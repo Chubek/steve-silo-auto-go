@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/joho/godotenv/autoload"
 	"github.com/tebeka/selenium"
 )
 
@@ -23,8 +22,8 @@ func main() {
 	// Start a Selenium WebDriver server instance (if one is not already
 	// running).
 
-	seleniumPath := os.Getenv("SELENIUM_PATH")
-	driverPath := os.Getenv("DRIVER_PATH")
+	seleniumPath := "selenium-server-standalone-3.141.59.jar"
+	driverPath := "htmlunit-driver-2.50.0-jar-with-dependencies.jar"
 	port := 9688
 
 	opts := []selenium.ServiceOption{
@@ -40,7 +39,7 @@ func main() {
 	defer service.Stop()
 
 	// Connect to the WebDriver instance running locally.
-	caps := selenium.Capabilities{"browserName": "HTMLUnit"}
+	caps := selenium.Capabilities{"browserName": "HTMUnit"}
 	wd, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", port))
 	if err != nil {
 		panic(err)
