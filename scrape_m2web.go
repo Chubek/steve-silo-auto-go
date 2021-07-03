@@ -23,13 +23,13 @@ func main() {
 	// running).
 
 	seleniumPath := "selenium-server-standalone-3.141.59.jar"
-	driverPath := "htmlunit-driver-2.50.0-jar-with-dependencies.jar"
+	driverPath := "chromedriver"
 	port := 9688
 
 	opts := []selenium.ServiceOption{
-		selenium.StartFrameBuffer(),   // Start an X frame buffer for the browser to run in.
-		selenium.HTMLUnit(driverPath), // Specify the path to GeckoDriver in order to use Firefox.
-		selenium.Output(os.Stderr),    // Output debug information to STDERR.
+		selenium.StartFrameBuffer(),       // Start an X frame buffer for the browser to run in.
+		selenium.ChromeDriver(driverPath), // Specify the path to GeckoDriver in order to use Firefox.
+		selenium.Output(os.Stderr),        // Output debug information to STDERR.
 	}
 	selenium.SetDebug(true)
 	service, err := selenium.NewSeleniumService(seleniumPath, port, opts...)
