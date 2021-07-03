@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/tebeka/selenium"
 )
 
@@ -22,11 +22,6 @@ import (
 func main() {
 	// Start a Selenium WebDriver server instance (if one is not already
 	// running).
-
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	seleniumPath := os.Getenv("SELENIUM_PATH")
 	chromeDriverPath := os.Getenv("DRIVER_PATH")
