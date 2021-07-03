@@ -24,13 +24,13 @@ func main() {
 	// running).
 
 	seleniumPath := os.Getenv("SELENIUM_PATH")
-	chromeDriverPath := os.Getenv("DRIVER_PATH")
-	port := 8080
+	driverPath := os.Getenv("DRIVER_PATH")
+	port := 9688
 
 	opts := []selenium.ServiceOption{
-		selenium.StartFrameBuffer(),             // Start an X frame buffer for the browser to run in.
-		selenium.ChromeDriver(chromeDriverPath), // Specify the path to GeckoDriver in order to use Firefox.
-		selenium.Output(os.Stderr),              // Output debug information to STDERR.
+		selenium.StartFrameBuffer(),   // Start an X frame buffer for the browser to run in.
+		selenium.HTMLUnit(driverPath), // Specify the path to GeckoDriver in order to use Firefox.
+		selenium.Output(os.Stderr),    // Output debug information to STDERR.
 	}
 	selenium.SetDebug(true)
 	service, err := selenium.NewSeleniumService(seleniumPath, port, opts...)
