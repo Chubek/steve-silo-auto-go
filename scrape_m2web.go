@@ -40,7 +40,7 @@ func main() {
 	defer service.Stop()
 
 	// Connect to the WebDriver instance running locally.
-	caps := selenium.Capabilities{"browserName": "chrome"}
+	caps := selenium.Capabilities{"browserName": "HTMLUnit"}
 	wd, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", port))
 	if err != nil {
 		panic(err)
