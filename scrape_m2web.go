@@ -23,7 +23,7 @@ func main() {
 	// Start a Selenium WebDriver server instance (if one is not already
 	// running).
 
-	err := godotenv.Load()
+	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
