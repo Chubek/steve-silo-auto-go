@@ -25,7 +25,7 @@ func Scrape_m2web() {
 	const (
 		// These paths will be different on your system.
 		seleniumPath    = "selenium-server-standalone-3.4.jar"
-		geckoDriverPath = "geckodriver-v0.18.0-linux64"
+		geckoDriverPath = "geckodriver"
 		port            = 8080
 	)
 	opts := []selenium.ServiceOption{
