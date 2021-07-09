@@ -1,6 +1,7 @@
 // Binary init downloads the necessary files to perform an integration test
 // between this WebDriver client and multiple versions of Selenium and
 // browsers.
+package vendor
 
 import (
 	"context"

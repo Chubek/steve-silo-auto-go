@@ -1,4 +1,4 @@
-package main
+package m2web
 
 import (
 	"fmt"
