@@ -22,14 +22,16 @@ func main() {
 	// Start a Selenium WebDriver server instance (if one is not already
 	// running).
 
-	seleniumPath := "selenium-server-standalone-3.141.59.jar"
-	driverPath := "chromedriver"
-	port := 9688
-
+	const (
+		// These paths will be different on your system.
+		seleniumPath    = "vendor/selenium-server-standalone-3.4.jar"
+		geckoDriverPath = "vendor/geckodriver-v0.18.0-linux64"
+		port            = 8080
+	)
 	opts := []selenium.ServiceOption{
-		selenium.StartFrameBuffer(),       // Start an X frame buffer for the browser to run in.
-		selenium.ChromeDriver(driverPath), // Specify the path to GeckoDriver in order to use Firefox.
-		selenium.Output(os.Stderr),        // Output debug information to STDERR.
+		selenium.StartFrameBuffer(),           // Start an X frame buffer for the browser to run in.
+		selenium.GeckoDriver(geckoDriverPath), // Specify the path to GeckoDriver in order to use Firefox.
+		selenium.Output(os.Stderr),            // Output debug information to STDERR.
 	}
 	selenium.SetDebug(true)
 	service, err := selenium.NewSeleniumService(seleniumPath, port, opts...)
@@ -39,7 +41,7 @@ func main() {
 	defer service.Stop()
 
 	// Connect to the WebDriver instance running locally.
-	caps := selenium.Capabilities{"browserName": "Chrome", "headless": true, "no-sandbox": true, "disable-gpu": true}
+	caps := selenium.Capabilities{"browserName": "firefox", "headless": true}
 	wd, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", port))
 	if err != nil {
 		panic(err)
