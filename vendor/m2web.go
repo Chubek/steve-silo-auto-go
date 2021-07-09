@@ -1,4 +1,4 @@
-package m2web
+package scrape
 
 import (
 	"fmt"
@@ -18,14 +18,14 @@ import (
 //      function.
 //   3. Run:
 //      go test -test.run=Example$ github.com/tebeka/selenium
-func main() {
+func Scrape_m2web() {
 	// Start a Selenium WebDriver server instance (if one is not already
 	// running).
 
 	const (
 		// These paths will be different on your system.
-		seleniumPath    = "vendor/selenium-server-standalone-3.4.jar"
-		geckoDriverPath = "vendor/geckodriver-v0.18.0-linux64"
+		seleniumPath    = "selenium-server-standalone-3.4.jar"
+		geckoDriverPath = "geckodriver-v0.18.0-linux64"
 		port            = 8080
 	)
 	opts := []selenium.ServiceOption{
