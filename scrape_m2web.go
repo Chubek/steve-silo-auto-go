@@ -7,8 +7,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	_"golang.org/x/net/html/charset"
-	_"bytes"
 )
 
 
@@ -222,8 +220,4 @@ func scrape_m2web() {
 	fmt.Println(fmt.Sprintf("%s", string(bodyRes)))
 
 
-}
-
-func main() {
-	scrape_m2web()
 }
