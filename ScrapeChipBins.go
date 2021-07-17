@@ -15,9 +15,10 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"github.com/lazureykis/dotenv"
+
 	"github.com/anthonynsimon/bild/effect"
 	"github.com/disintegration/imaging"
+	"github.com/lazureykis/dotenv"
 	"github.com/mxschmitt/playwright-go"
 	"github.com/oliamb/cutter"
 )
@@ -51,7 +52,7 @@ type ChipBinsOCRRes struct {
 	ProcessingTimeInMilliseconds string `json:"ProcessingTimeInMilliseconds"`
 }
 
-func ScrapeMyBinView() {
+func ScrapeChipBins() {
 	dotenv.Go()
 	pw, err := playwright.Run()
 	if err != nil {
@@ -114,7 +115,6 @@ func ScrapeMyBinView() {
 	imgBase64Str := base64.StdEncoding.EncodeToString(buf.Bytes())
 
 	b64WithSignature := fmt.Sprintf("data:image/png;base64,%s", imgBase64Str)
-	
 
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
@@ -158,7 +158,7 @@ func ScrapeMyBinView() {
 
 	json.Unmarshal(body, &ocrResults)
 
-	fmt.Println(ocrResults, string(body))
+	fmt.Println(ocrResults)
 
 	if err = pw.Stop(); err != nil {
 		log.Fatalf("could not stop Playwright: %v", err)

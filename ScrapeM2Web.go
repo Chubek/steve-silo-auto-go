@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/xml"
-	"fmt"
+	_"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -133,16 +133,6 @@ func ScrapeM2Web() {
 		log.Fatal(err)
 	}
 
-	log.Println("Response Init Header", responseInit.Header)
-
-	bodyResInit, err := ioutil.ReadAll(responseInit.Body)
-	if err != nil {
-		log.Fatal("Error reading HTTP body. ", err)
-	}
-
-	log.Println("Response Init Body", string(bodyResInit))
-
-	fmt.Println("---------------------------------------------------------")
 
 	for _, cookie := range responseInit.Cookies() {
 		requestLogin.AddCookie(cookie)
@@ -153,16 +143,6 @@ func ScrapeM2Web() {
 		log.Fatal(err)
 	}
 
-	log.Println("Response Login Header", responseLogin.Header)
-
-	bodyResLogin, err := ioutil.ReadAll(responseLogin.Body)
-	if err != nil {
-		log.Fatal("Error reading HTTP body. ", err)
-	}
-
-	log.Println("Response Login Body", string(bodyResLogin))
-
-	fmt.Println("---------------------------------------------------------")
 
 
 	for _, cookie := range responseLogin.Cookies() {
@@ -174,10 +154,7 @@ func ScrapeM2Web() {
 		log.Fatal(err)
 	}
 
-	log.Println("Response Validate Header", responseValidate.Header)
-
-	fmt.Println("---------------------------------------------------------")
-
+	
 
 	for _, cookie := range responseValidate.Cookies() {
 		requestReadVars.AddCookie(cookie)
@@ -200,19 +177,13 @@ func ScrapeM2Web() {
 	if err != nil {
 		log.Fatal("Error reading HTTP body. ", err)
 	}
-
-	/*
-	reader := bytes.NewReader(bodyRes)
-	decoder := xml.NewDecoder(reader)
-
-	decoder.CharsetReader = charset.NewReaderLabel
 	
 
 	var parsed Server
 
-	err = decoder.Decode(&parsed)
-	*/
-	fmt.Println(fmt.Sprintf("%s", string(bodyRes)))
+	xml.Unmarshal(bodyRes, &parsed)
+
+	print(parsed)
 
 
 }
