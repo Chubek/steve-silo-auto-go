@@ -31,7 +31,7 @@ type MeasurementData struct {
 	} `json:"model"`
 }
 
-func ScrapeMyBinView() {
+func ScrapeMyBinView() (x MeasurementData) {
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
@@ -115,6 +115,8 @@ func ScrapeMyBinView() {
 
 	json.Unmarshal([]byte(string(bodyRes)), &result)
 
-	fmt.Println(result)
+	fmt.Printf("%+v\n", result)
+
+	return result
 
 }

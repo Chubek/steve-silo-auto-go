@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/xml"
-	_"fmt"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -25,7 +25,7 @@ type Server struct {
 
 }
 
-func ScrapeM2Web() {
+func ScrapeM2Web() (x Server) {
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
@@ -164,13 +164,11 @@ func ScrapeM2Web() {
 		requestReadVars.AddCookie(cookie)
 	}
 
-	log.Println("Request ReadVars Header", requestReadVars.Header)
 
 	responseReadVars, err := client.Do(requestReadVars)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("Response ReadVars Header", responseReadVars.Header)
 
 	
 	bodyRes, err := ioutil.ReadAll(responseReadVars.Body)
@@ -183,7 +181,7 @@ func ScrapeM2Web() {
 
 	xml.Unmarshal(bodyRes, &parsed)
 
-	print(parsed)
+	fmt.Printf("%+v\n", parsed)
 
-
+	return parsed
 }

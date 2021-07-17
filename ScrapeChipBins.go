@@ -52,7 +52,7 @@ type ChipBinsOCRRes struct {
 	ProcessingTimeInMilliseconds string `json:"ProcessingTimeInMilliseconds"`
 }
 
-func ScrapeChipBins() {
+func ScrapeChipBins() (x ChipBinsOCRRes) {
 	dotenv.Go()
 	pw, err := playwright.Run()
 	if err != nil {
@@ -154,13 +154,15 @@ func ScrapeChipBins() {
 		log.Fatal(err)
 	}
 
+	if err = pw.Stop(); err != nil {
+		log.Fatalf("could not stop Playwright: %v", err)
+	}
+
 	var ocrResults ChipBinsOCRRes
 
 	json.Unmarshal(body, &ocrResults)
 
-	fmt.Println(ocrResults)
+	fmt.Printf("%+v\n", ocrResults)
 
-	if err = pw.Stop(); err != nil {
-		log.Fatalf("could not stop Playwright: %v", err)
-	}
+	return ocrResults
 }
