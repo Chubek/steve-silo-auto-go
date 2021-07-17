@@ -25,7 +25,7 @@ type Server struct {
 
 }
 
-func scrape_m2web() {
+func ScrapeM2Web() {
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
@@ -198,11 +198,6 @@ func scrape_m2web() {
 	
 	bodyRes, err := ioutil.ReadAll(responseReadVars.Body)
 	if err != nil {
-		log.Fatal("Error reading HTTP body. ", err)
-	}
-
-	err2 := ioutil.WriteFile("dat2", bodyRes, 0644)
-    if err2 != nil {
 		log.Fatal("Error reading HTTP body. ", err)
 	}
 

@@ -51,7 +51,7 @@ type ChipBinsOCRRes struct {
 	ProcessingTimeInMilliseconds string `json:"ProcessingTimeInMilliseconds"`
 }
 
-func main() {
+func ScrapeMyBinView() {
 	dotenv.Go()
 	pw, err := playwright.Run()
 	if err != nil {
@@ -158,7 +158,7 @@ func main() {
 
 	json.Unmarshal(body, &ocrResults)
 
-	fmt.Println(ocrResults)
+	fmt.Println(ocrResults, string(body))
 
 	if err = pw.Stop(); err != nil {
 		log.Fatalf("could not stop Playwright: %v", err)
