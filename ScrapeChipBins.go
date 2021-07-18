@@ -98,6 +98,9 @@ func ScrapeChipBins() (x ChipBinsOCRRes) {
 		Anchor: image.Point{100, 100},
 		Height: 150,
 	})
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	brtImage := imaging.AdjustBrightness(croppedImg, 40)
 	cnstImage := imaging.AdjustContrast(brtImage, 140)

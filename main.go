@@ -1,16 +1,13 @@
-/*
+package main
+
+import "log"
 
 func main() {
-	
+	m2webRes := ScrapeM2Web()
+	chipbinsRes := ScrapeChipBins()
+	binViewRes := ScrapeMyBinView()
 
-	
+	InsertIntoDb(m2webRes, chipbinsRes, binViewRes)
 
-
-
-
-	ScrapeM2Web()
-	fmt.Println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-	ScrapeChipBins()
-	fmt.Println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-	ScrapeMyBinView()
-}*/
+	log.Println("Done!")
+}
