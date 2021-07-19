@@ -11,4 +11,4 @@ API_KEY=<API KEY, ASK ME OR GET IT YOURSELF FROM https://ocr.space/OCRAPI>
 DATABASE_LOC= <Path to a .db file such as I:\my_db.db>
 ```
 4. Run the application. Don't run it often, every half an hour is good. These sites impose a limit on logins. Don't overuse it!
-5. Use an SQLite viewer such as DBeaver to view the database.
+5. Use an SQLite viewer such as DBeaver or [this one](https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win32.msi) to view the database.
